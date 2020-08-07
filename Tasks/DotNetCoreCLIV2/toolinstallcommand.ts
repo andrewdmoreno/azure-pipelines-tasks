@@ -141,7 +141,11 @@ export async function run(): Promise<void> {
 
 function dotNetToolInstallAsync(dotnetPath: string, packageName: string, packageVersion: string, configFile: string, installGlobal: boolean, installLocation: string, verbosity: string): Q.Promise<number> {
     const dotnet = tl.tool(dotnetPath);
-    dotnet.arg(`tool install ${packageName}`);
+    dotnet.arg('tool');
+
+    dotnet.arg('install');
+
+    dotnet.arg(packageName);
 
     if (packageVersion && packageVersion.length > 0) {
         dotnet.arg('--version');
@@ -149,7 +153,7 @@ function dotNetToolInstallAsync(dotnetPath: string, packageName: string, package
     }
 
     if (installGlobal === true) {
-        dotnet.arg('--global ');
+        dotnet.arg('--global');
     } 
     else if (installLocation && installLocation.length > 0) {
         dotnet.arg('--tool-path');
