@@ -18,7 +18,7 @@
   "version": {
     "Major": 2,
     "Minor": 174,
-    "Patch": 0
+    "Patch": 1
   },
   "minimumAgentVersion": "2.115.0",
   "instanceNameFormat": "ms-resource:loc.instanceNameFormat",
@@ -498,7 +498,7 @@
       "helpMarkDown": "ms-resource:loc.input.help.workingDirectory",
       "required": "false",
       "groupName": "generalAdvanced",
-      "visibleRule": "command != restore && command != push && command != pack"
+      "visibleRule": "command != restore && command != push && command != pack && command != toolinstall"
     },
     {
       "name": "toolPackageName",
@@ -507,7 +507,8 @@
       "defaultValue": "",
       "helpMarkDown": "ms-resource:loc.input.help.toolPackageName",
       "required": "true",
-      "groupName": "toolInstall"
+      "groupName": "toolInstall",
+      "visibleRule": "command = toolinstall"
     },
     {
       "name": "toolPackageVersion",
@@ -516,7 +517,8 @@
       "defaultValue": "",
       "helpMarkDown": "ms-resource:loc.input.help.toolPackageVersion",
       "required": "false",
-      "groupName": "toolInstall"
+      "groupName": "toolInstall",
+      "visibleRule": "command = toolinstall"
     },
     {
       "name": "toolInstallGlobal",
@@ -525,7 +527,8 @@
       "defaultValue": "false",
       "helpMarkDown": "ms-resource:loc.input.help.toolInstallGlobal",
       "required": true,
-      "groupName": "toolInstall"
+      "groupName": "toolInstall",
+      "visibleRule": "command = toolinstall"
     },
     {
       "name": "toolInstallPath",
@@ -534,7 +537,8 @@
       "defaultValue": "",
       "helpMarkDown": "ms-resource:loc.input.help.toolInstallPath",
       "required": false,
-      "groupName": "toolInstall"
+      "groupName": "toolInstall",
+      "visibleRule": "command = toolinstall && toolInstallGlobal = false"
     }
   ],
   "dataSourceBindings": [

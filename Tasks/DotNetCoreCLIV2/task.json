@@ -18,7 +18,7 @@
     "version": {
         "Major": 2,
         "Minor": 174,
-        "Patch": 0
+        "Patch": 1
     },
     "minimumAgentVersion": "2.115.0",
     "instanceNameFormat": "dotnet $(command)",
@@ -498,7 +498,7 @@
             "helpMarkDown": "Current working directory where the script is run. Empty is the root of the repo (build) or artifacts (release), which is $(System.DefaultWorkingDirectory). The project search pattern is **NOT** relative to working directory.",
             "required": "false",
             "groupName": "generalAdvanced",
-            "visibleRule": "command != restore && command != push && command != pack"
+            "visibleRule": "command != restore && command != push && command != pack && command != toolinstall"
         },
         {
             "name": "toolPackageName",
@@ -507,7 +507,8 @@
             "defaultValue": "",
             "helpMarkDown": "Package name of the tool to install.",
             "required": "true",
-            "groupName": "toolInstall"
+            "groupName": "toolInstall",
+            "visibleRule": "command = toolinstall"
         },
         {
             "name": "toolPackageVersion",
@@ -516,7 +517,8 @@
             "defaultValue": "",
             "helpMarkDown": "The version of the tool package to install.",
             "required": "false",
-            "groupName": "toolInstall"
+            "groupName": "toolInstall",
+            "visibleRule": "command = toolinstall"
         },
         {
             "name": "toolInstallGlobal",
@@ -525,7 +527,8 @@
             "defaultValue": "false",
             "helpMarkDown": "Specifies that the installation is user wide. Can't be combined with the --tool-path option. Omitting both --global and --tool-path specifies a local tool installation.",
             "required": true,
-            "groupName": "toolInstall"
+            "groupName": "toolInstall",
+            "visibleRule": "command = toolinstall"
         },
         {
             "name": "toolInstallPath",
@@ -534,7 +537,8 @@
             "defaultValue": "",
             "helpMarkDown": "Specifies the location where to install the Global Tool. PATH can be absolute or relative. If PATH doesn't exist, the command tries to create it. Omitting both --global and --tool-path specifies a local tool installation.",
             "required": false,
-            "groupName": "toolInstall"
+            "groupName": "toolInstall",
+            "visibleRule": "command = toolinstall && toolInstallGlobal = false"
         }
     ],
     "dataSourceBindings": [
